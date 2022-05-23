@@ -1,24 +1,200 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cIU-OZ-JYl">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Workout-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Run4Health" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xfT-M2-P3S">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="650"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="650" id="Fm5-tn-1Tf"/>
+                                </constraints>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dn1-wD-1jx">
+                                <rect key="frame" x="104.5" y="728" width="205" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cq-1g-TvO" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="12.5" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="KwJ-2R-FUO"/>
+                                            <constraint firstAttribute="width" constant="50" id="Pyv-o6-gv2"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="kmBtn"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zwk-UM-s9z" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
+                                        <rect key="frame" x="65" y="0.0" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="75" id="aUi-JJ-k8C"/>
+                                            <constraint firstAttribute="height" constant="75" id="wHJ-sD-TEL"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="playBtn"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gih-qX-Pcr" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
+                                        <rect key="frame" x="155" y="12.5" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="3ip-Zs-vHN"/>
+                                            <constraint firstAttribute="width" constant="50" id="uNs-qi-lcd"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="stopBtn"/>
+                                        <connections>
+                                            <segue destination="ckg-t7-5fu" kind="showDetail" identifier="goToShare" id="FFZ-gY-TbL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rk-sN-RR0">
+                                <rect key="frame" x="0.0" y="561.5" width="106" height="68.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:23:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhZ-9r-Xbg">
+                                <rect key="frame" x="266.5" y="561.5" width="147.5" height="68.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" name="launchScreenColor"/>
+                        <constraints>
+                            <constraint firstItem="1Rk-sN-RR0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0QQ-om-z0w"/>
+                            <constraint firstItem="dn1-wD-1jx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0zU-kF-nLT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dn1-wD-1jx" secondAttribute="bottom" constant="10" id="3CS-DV-nIK"/>
+                            <constraint firstItem="xfT-M2-P3S" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LVc-sC-ceu"/>
+                            <constraint firstItem="hhZ-9r-Xbg" firstAttribute="baseline" secondItem="1Rk-sN-RR0" secondAttribute="baseline" id="OPy-Ed-Ys2"/>
+                            <constraint firstItem="hhZ-9r-Xbg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Rk-sN-RR0" secondAttribute="trailing" constant="8" symbolic="YES" id="Q7w-X7-2qU"/>
+                            <constraint firstItem="hhZ-9r-Xbg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QxE-nQ-wFc"/>
+                            <constraint firstItem="xfT-M2-P3S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mju-OJ-fgM"/>
+                            <constraint firstItem="xfT-M2-P3S" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="thZ-9q-XD3"/>
+                            <constraint firstItem="hhZ-9r-Xbg" firstAttribute="bottom" secondItem="xfT-M2-P3S" secondAttribute="bottom" constant="-20" id="xje-b8-gSb"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Workout" image="figure.walk" catalog="system" id="zqa-Bu-Zhg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1315.9420289855072" y="95.758928571428569"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DH5-eH-VPv">
+            <objects>
+                <viewController id="ckg-t7-5fu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xcj-pC-siu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xh2-rd-78j">
+                                <rect key="frame" x="20" y="44" width="374" height="542"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xg-fJ-kaq" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
+                                <rect key="frame" x="147" y="658" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="IFz-V9-Gyb"/>
+                                    <constraint firstAttribute="height" constant="120" id="M4n-7m-vbQ"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="shareBtn"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2r2-yj-tRq"/>
+                        <color key="backgroundColor" name="launchScreenColor"/>
+                        <constraints>
+                            <constraint firstItem="7xg-fJ-kaq" firstAttribute="top" secondItem="Xh2-rd-78j" secondAttribute="bottom" constant="72" id="5Z1-FU-BAe"/>
+                            <constraint firstItem="2r2-yj-tRq" firstAttribute="bottom" secondItem="7xg-fJ-kaq" secondAttribute="bottom" constant="64" id="6Cn-0V-Gkv"/>
+                            <constraint firstItem="Xh2-rd-78j" firstAttribute="leading" secondItem="2r2-yj-tRq" secondAttribute="leading" constant="20" id="AXY-UO-H6e"/>
+                            <constraint firstItem="2r2-yj-tRq" firstAttribute="trailing" secondItem="Xh2-rd-78j" secondAttribute="trailing" constant="20" id="VtV-9D-fzY"/>
+                            <constraint firstItem="7xg-fJ-kaq" firstAttribute="centerX" secondItem="Xh2-rd-78j" secondAttribute="centerX" id="bnN-4E-N0e"/>
+                            <constraint firstItem="Xh2-rd-78j" firstAttribute="top" secondItem="2r2-yj-tRq" secondAttribute="top" id="jYP-6A-Qwf"/>
+                            <constraint firstItem="7xg-fJ-kaq" firstAttribute="centerX" secondItem="Xcj-pC-siu" secondAttribute="centerX" id="zmE-8O-we0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="4B5-ho-POG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O4U-M1-DXL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2213.04347826087" y="95.758928571428569"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Thc-4q-H9z">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cIU-OZ-JYl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="igj-2B-SRZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Uwn-Tq-6LW"/>
+                        <segue destination="bsD-b7-Dyi" kind="relationship" relationship="viewControllers" id="1wQ-Yk-wmX"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GQb-Xg-en1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="405.79710144927537" y="427.23214285714283"/>
+        </scene>
+        <!--Recents-->
+        <scene sceneID="wTZ-c3-TGz">
+            <objects>
+                <tableViewController id="bsD-b7-Dyi" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="vQe-zP-bX9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="launchScreenColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutCell" id="Ndn-a5-dXY">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ndn-a5-dXY" id="T7b-UO-3ZS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="launchScreenColor"/>
+                                <connections>
+                                    <segue destination="ckg-t7-5fu" kind="show" identifier="goToDetail" trigger="accessoryAction" id="Ebk-iV-D0W"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bsD-b7-Dyi" id="iug-by-3Ly"/>
+                            <outlet property="delegate" destination="bsD-b7-Dyi" id="JF7-RH-YtZ"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Recents" image="list.triangle" catalog="system" id="lXs-bO-ZVY"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B8x-Gv-BiD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1314" y="771"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ebk-iV-D0W"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="figure.walk" catalog="system" width="95" height="128"/>
+        <image name="kmBtn" width="341" height="341"/>
+        <image name="list.triangle" catalog="system" width="128" height="91"/>
+        <image name="playBtn" width="341" height="341"/>
+        <image name="shareBtn" width="341" height="341"/>
+        <image name="stopBtn" width="341" height="341"/>
+        <namedColor name="launchScreenColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+    </resources>
 </document>

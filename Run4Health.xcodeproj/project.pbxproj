@@ -13,6 +13,8 @@
 		DFF599D22838E7ED00C37FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFF599D02838E7ED00C37FFD /* Main.storyboard */; };
 		DFF599D42838E7EF00C37FFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFF599D32838E7EF00C37FFD /* Assets.xcassets */; };
 		DFF599D72838E7EF00C37FFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFF599D52838E7EF00C37FFD /* LaunchScreen.storyboard */; };
+		DFF599E2283B9AA200C37FFD /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF599E1283B9AA200C37FFD /* RoundButton.swift */; };
+		DFF599E4283BA09F00C37FFD /* PropertyKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF599E3283BA09F00C37FFD /* PropertyKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		DFF599D32838E7EF00C37FFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFF599D62838E7EF00C37FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFF599D82838E7EF00C37FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFF599E1283B9AA200C37FFD /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		DFF599E3283BA09F00C37FFD /* PropertyKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,7 @@
 				DFF599D32838E7EF00C37FFD /* Assets.xcassets */,
 				DFF599D52838E7EF00C37FFD /* LaunchScreen.storyboard */,
 				DFF599D82838E7EF00C37FFD /* Info.plist */,
+				DFF599E3283BA09F00C37FFD /* PropertyKeys.swift */,
 			);
 			path = Run4Health;
 			sourceTree = "<group>";
@@ -87,6 +92,7 @@
 		DFF599E02838E8C400C37FFD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DFF599E1283B9AA200C37FFD /* RoundButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,7 +168,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF599E2283B9AA200C37FFD /* RoundButton.swift in Sources */,
 				DFF599CF2838E7ED00C37FFD /* ViewController.swift in Sources */,
+				DFF599E4283BA09F00C37FFD /* PropertyKeys.swift in Sources */,
 				DFF599CB2838E7ED00C37FFD /* AppDelegate.swift in Sources */,
 				DFF599CD2838E7ED00C37FFD /* SceneDelegate.swift in Sources */,
 			);
