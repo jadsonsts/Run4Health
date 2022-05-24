@@ -12,9 +12,10 @@ class RoundButton: UIButton {
     override func awakeFromNib() {
         //MARK: Corner radius
         self.layer.cornerRadius = self.frame.height / 2
+
         
         //MARK: Shadow
-        self.layer.shadowRadius = 20
+        self.layer.shadowRadius = 15
         self.layer.shadowOpacity = 0.5
         self.layer.shadowColor = UIColor.black.cgColor
     }

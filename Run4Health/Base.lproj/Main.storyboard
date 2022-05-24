@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +13,7 @@
         <!--Workout-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Run4Health" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RunViewController" customModule="Run4Health" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,32 +29,47 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cq-1g-TvO" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="12.5" width="50" height="50"/>
+                                        <color key="backgroundColor" name="launchScreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="KwJ-2R-FUO"/>
                                             <constraint firstAttribute="width" constant="50" id="Pyv-o6-gv2"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="kmBtn"/>
+                                        <connections>
+                                            <action selector="metricTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9ck-W0-3LC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zwk-UM-s9z" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
                                         <rect key="frame" x="65" y="0.0" width="75" height="75"/>
+                                        <color key="backgroundColor" name="launchScreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="aUi-JJ-k8C"/>
                                             <constraint firstAttribute="height" constant="75" id="wHJ-sD-TEL"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="tintColor" name="buttonColors"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="playBtn"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="play.fill" catalog="system" symbolScale="large"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="black"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startPauseTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Lt-Ba-N4h"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gih-qX-Pcr" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
                                         <rect key="frame" x="155" y="12.5" width="50" height="50"/>
+                                        <color key="backgroundColor" name="launchScreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="3ip-Zs-vHN"/>
                                             <constraint firstAttribute="width" constant="50" id="uNs-qi-lcd"/>
                                         </constraints>
+                                        <color key="tintColor" name="buttonColors"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="stopBtn"/>
+                                        <state key="normal" image="stop.fill" catalog="system"/>
                                         <connections>
-                                            <segue destination="ckg-t7-5fu" kind="showDetail" identifier="goToShare" id="FFZ-gY-TbL"/>
+                                            <action selector="stopTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n8S-0R-d6E"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -64,12 +80,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:23:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhZ-9r-Xbg">
-                                <rect key="frame" x="266.5" y="561.5" width="147.5" height="68.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:23:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhZ-9r-Xbg">
+                                <rect key="frame" x="242.5" y="561.5" width="171.5" height="68.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7g-98-8h1" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="658" width="26.5" height="26"/>
+                                <color key="backgroundColor" name="launchScreenColor"/>
+                                <color key="tintColor" name="buttonColors"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <color key="titleColor" name="buttonColors"/>
+                                    <imageReference key="image" image="location.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetMapLocationWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9gm-pA-Ka2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="launchScreenColor"/>
@@ -78,8 +108,10 @@
                             <constraint firstItem="dn1-wD-1jx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0zU-kF-nLT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dn1-wD-1jx" secondAttribute="bottom" constant="10" id="3CS-DV-nIK"/>
                             <constraint firstItem="xfT-M2-P3S" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LVc-sC-ceu"/>
+                            <constraint firstItem="W7g-98-8h1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NfI-QX-lqa"/>
                             <constraint firstItem="hhZ-9r-Xbg" firstAttribute="baseline" secondItem="1Rk-sN-RR0" secondAttribute="baseline" id="OPy-Ed-Ys2"/>
                             <constraint firstItem="hhZ-9r-Xbg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Rk-sN-RR0" secondAttribute="trailing" constant="8" symbolic="YES" id="Q7w-X7-2qU"/>
+                            <constraint firstItem="W7g-98-8h1" firstAttribute="top" secondItem="xfT-M2-P3S" secondAttribute="bottom" constant="8" symbolic="YES" id="Qvz-XD-CZO"/>
                             <constraint firstItem="hhZ-9r-Xbg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QxE-nQ-wFc"/>
                             <constraint firstItem="xfT-M2-P3S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mju-OJ-fgM"/>
                             <constraint firstItem="xfT-M2-P3S" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="thZ-9q-XD3"/>
@@ -87,15 +119,23 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Workout" image="figure.walk" catalog="system" id="zqa-Bu-Zhg"/>
+                    <connections>
+                        <outlet property="distanceLabel" destination="1Rk-sN-RR0" id="Fls-9T-Gbc"/>
+                        <outlet property="distanceMetricButton" destination="4cq-1g-TvO" id="vQ4-MV-I9w"/>
+                        <outlet property="mapView" destination="xfT-M2-P3S" id="egC-eW-UQk"/>
+                        <outlet property="startPauseButton" destination="Zwk-UM-s9z" id="JTn-QE-zOq"/>
+                        <outlet property="stopButton" destination="Gih-qX-Pcr" id="Qor-x6-VAr"/>
+                        <outlet property="timeLabel" destination="hhZ-9r-Xbg" id="BKq-Qn-Q46"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1315.9420289855072" y="95.758928571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--Share View Controller-->
         <scene sceneID="DH5-eH-VPv">
             <objects>
-                <viewController id="ckg-t7-5fu" sceneMemberID="viewController">
+                <viewController id="ckg-t7-5fu" customClass="ShareViewController" customModule="Run4Health" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xcj-pC-siu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,6 +145,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xg-fJ-kaq" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
                                 <rect key="frame" x="147" y="658" width="120" height="120"/>
+                                <color key="backgroundColor" name="launchScreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="IFz-V9-Gyb"/>
                                     <constraint firstAttribute="height" constant="120" id="M4n-7m-vbQ"/>
@@ -139,6 +180,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="igj-2B-SRZ">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="buttonColors"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Uwn-Tq-6LW"/>
@@ -152,7 +194,7 @@
         <!--Recents-->
         <scene sceneID="wTZ-c3-TGz">
             <objects>
-                <tableViewController id="bsD-b7-Dyi" sceneMemberID="viewController">
+                <tableViewController id="bsD-b7-Dyi" customClass="RunsListTableViewController" customModule="Run4Health" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="vQe-zP-bX9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,16 +225,17 @@
             <point key="canvasLocation" x="1314" y="771"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Ebk-iV-D0W"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="figure.walk" catalog="system" width="95" height="128"/>
         <image name="kmBtn" width="341" height="341"/>
         <image name="list.triangle" catalog="system" width="128" height="91"/>
-        <image name="playBtn" width="341" height="341"/>
+        <image name="location.fill" catalog="system" width="128" height="121"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="shareBtn" width="341" height="341"/>
-        <image name="stopBtn" width="341" height="341"/>
+        <image name="stop.fill" catalog="system" width="128" height="113"/>
+        <namedColor name="buttonColors">
+            <color red="0.32507956030000001" green="0.28205111620000001" blue="0.26607620720000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="launchScreenColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
