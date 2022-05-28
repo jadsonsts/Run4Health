@@ -9,6 +9,6 @@ import Foundation
 
 struct K {
     static let workoutCellId = "WorkoutCell"
-    static let stopSegue = "goToShare"
+    static let goToFinishRunDetails = "goToRunDetails"
     static let detailSegue = "goToDetail"
 }

@@ -14,7 +14,14 @@ struct WorkoutsModel {
 }
 
 struct Runs {
-    var time: String
-    var distance: String
+    var duration: Int
+    var distance: Double
     var screenShot: UIImage
+    var pace: String
+    var date: Date
+}
+
+struct Location {
+    var latitude = "23"
+    var longitude = "324"
 }

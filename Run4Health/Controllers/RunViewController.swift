@@ -17,6 +17,7 @@ class RunViewController: UIViewController {
     @IBOutlet weak var distanceMetricButton: RoundButton!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var paceLabel: UILabel!
     
     let manager = CLLocationManager()
     var workouts: WorkoutsModel?
@@ -31,15 +32,26 @@ class RunViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         checkLocationAuthStatus()
+        configureView()
+
+    }
+    
+    func configureView() {
         stopButton.isEnabled = false
         timeLabel.text = self.makeTimeString(hours: 0, minutes: 0, seconds: 0)
-        distanceLabel.text = "0km"
-        
+        hideLabels()
+        mapView.layer.opacity = 0.5
+    }
+    
+    func hideLabels() {
+        distanceLabel.isHidden = true
+        timeLabel.isHidden = true
+        paceLabel.isHidden = true
     }
     
     @IBAction func startPauseTapped(sender: RoundButton) {
+        manager.startUpdatingLocation()
         if(timerCounting)
         {
             timerCounting = false
@@ -51,6 +63,9 @@ class RunViewController: UIViewController {
             timerCounting = true
             startPauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             stopButton.isEnabled = true
+            distanceLabel.isHidden = false
+            timeLabel.isHidden = false
+            paceLabel.isHidden = false
             distanceMetricButton.isEnabled = false
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
         }
@@ -82,10 +97,7 @@ class RunViewController: UIViewController {
     
     @IBAction func stopTapped(sender: RoundButton) {
         let alert = UIAlertController(title: "Stop Workout?", message: "Are you sure you would like to stop your workout?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: { (_) in
-            //do nothing
-        }))
-        
+        alert.addAction(UIAlertAction(title: "CANCEL", style: .cancel))
         alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
             self.count = 0
             self.timer.invalidate()
@@ -93,6 +105,9 @@ class RunViewController: UIViewController {
             self.startPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
             self.stopButton.isEnabled = false
             self.distanceMetricButton.isEnabled = true
+            self.manager.stopUpdatingLocation()
+            self.hideLabels()
+            self.performSegue(withIdentifier: K.goToFinishRunDetails, sender: nil)
             
         }))
         
@@ -126,8 +141,10 @@ extension RunViewController: MKMapViewDelegate {
         if manager.authorizationStatus == .authorizedAlways {
             self.mapView.showsUserLocation = true
             LocationService.instance.customUserLocationDelegate = self
+            LocationService.instance.locationManager.allowsBackgroundLocationUpdates = true
         } else {
-            LocationService.instance.locationManager.requestWhenInUseAuthorization()
+            //LocationService.instance.locationManager.requestWhenInUseAuthorization()
+            LocationService.instance.locationManager.requestAlwaysAuthorization()
         }
     }
     
@@ -146,3 +163,37 @@ extension RunViewController: CustomUserLocationDelegate {
     }
 }
 
+//MARK: - overlay user run distance
+extension RunViewController {
+    func getUserDistance (userCoordinates: [CLLocationCoordinate2D]) {
+        removeOverlays()
+        
+        
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: userCoordinates.last!))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: userCoordinates.first!))
+        
+        let direction = MKDirections(request: request)
+        
+        direction.calculate { [unowned self] response, error in
+            guard let route = response?.routes.first else {return}
+            self.mapView.addOverlay(route.polyline)
+            
+            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 200, left: 50, bottom: 50, right: 50), animated: true)
+        }
+    }
+    
+    func removeOverlays() {
+        self.mapView.overlays.forEach { self.mapView.removeOverlay($0)}
+        
+    }
+}
+
+//MARK: - perform segue
+extension RunViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let runDetails = segue.destination as? DetailsRunViewController {
+            runDetails.workouts = workouts
+        }
+    }
+}

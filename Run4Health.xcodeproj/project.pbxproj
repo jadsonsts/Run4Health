@@ -17,7 +17,7 @@
 		DFF599E4283BA09F00C37FFD /* PropertyKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF599E3283BA09F00C37FFD /* PropertyKeys.swift */; };
 		DFF599E7283CDB2900C37FFD /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF599E6283CDB2900C37FFD /* LocationService.swift */; };
 		DFF599E9283CE04400C37FFD /* WorkoutsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF599E8283CE04400C37FFD /* WorkoutsModel.swift */; };
-		DFF599EB283CE19400C37FFD /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF599EA283CE19400C37FFD /* ShareViewController.swift */; };
+		DFF599EB283CE19400C37FFD /* DetailsRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF599EA283CE19400C37FFD /* DetailsRunViewController.swift */; };
 		DFF599ED283CE1B200C37FFD /* RunsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF599EC283CE1B200C37FFD /* RunsListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +34,7 @@
 		DFF599E3283BA09F00C37FFD /* PropertyKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyKeys.swift; sourceTree = "<group>"; };
 		DFF599E6283CDB2900C37FFD /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		DFF599E8283CE04400C37FFD /* WorkoutsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsModel.swift; sourceTree = "<group>"; };
-		DFF599EA283CE19400C37FFD /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		DFF599EA283CE19400C37FFD /* DetailsRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRunViewController.swift; sourceTree = "<group>"; };
 		DFF599EC283CE1B200C37FFD /* RunsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunsListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				DFF599CE2838E7ED00C37FFD /* RunViewController.swift */,
-				DFF599EA283CE19400C37FFD /* ShareViewController.swift */,
+				DFF599EA283CE19400C37FFD /* DetailsRunViewController.swift */,
 				DFF599EC283CE1B200C37FFD /* RunsListTableViewController.swift */,
 			);
 			path = Controllers;
@@ -194,7 +194,7 @@
 				DFF599CB2838E7ED00C37FFD /* AppDelegate.swift in Sources */,
 				DFF599E9283CE04400C37FFD /* WorkoutsModel.swift in Sources */,
 				DFF599E7283CDB2900C37FFD /* LocationService.swift in Sources */,
-				DFF599EB283CE19400C37FFD /* ShareViewController.swift in Sources */,
+				DFF599EB283CE19400C37FFD /* DetailsRunViewController.swift in Sources */,
 				DFF599ED283CE1B200C37FFD /* RunsListTableViewController.swift in Sources */,
 				DFF599CD2838E7ED00C37FFD /* SceneDelegate.swift in Sources */,
 			);
@@ -346,6 +346,10 @@
 				DEVELOPMENT_TEAM = ZY9DNBTZ6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Run4Health/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to track your workout";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to track your workout";
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location to track your workout";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to track your workout";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -376,6 +380,10 @@
 				DEVELOPMENT_TEAM = ZY9DNBTZ6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Run4Health/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to track your workout";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to track your workout";
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location to track your workout";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to track your workout";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
