@@ -15,7 +15,7 @@ protocol CustomUserLocationDelegate {
 class LocationService: NSObject, CLLocationManagerDelegate {
     static let instance = LocationService()
     
-    var customUserLocationDelegate: CustomUserLocationDelegate?
+    //var customUserLocationDelegate: CustomUserLocationDelegate?
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D?
@@ -28,14 +28,5 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.locationManager.startUpdatingLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.currentLocation = manager.location?.coordinate
-        if customUserLocationDelegate != nil {
-            customUserLocationDelegate?.userLocationUpdated(locacation: locations.first!)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        debugPrint("error: \(error.localizedDescription)")
-    }
+
 }

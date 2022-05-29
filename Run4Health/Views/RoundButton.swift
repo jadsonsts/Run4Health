@@ -13,7 +13,6 @@ class RoundButton: UIButton {
         //MARK: Corner radius
         self.layer.cornerRadius = self.frame.height / 2
 
-        
         //MARK: Shadow
         self.layer.shadowRadius = 15
         self.layer.shadowOpacity = 0.5

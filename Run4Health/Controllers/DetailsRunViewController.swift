@@ -26,7 +26,7 @@ class DetailsRunViewController: UIViewController {
     
 
     private func configureView() {
-        
+        //let distance = Measurement(value: workouts., unit: <#T##Unit#>)
     }
 
 }

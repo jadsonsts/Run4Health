@@ -95,7 +95,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JnQ-Qq-KQ9">
-                                <rect key="frame" x="0.0" y="526" width="82" height="123.5"/>
+                                <rect key="frame" x="0.0" y="546.5" width="82" height="103"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rk-sN-RR0">
                                         <rect key="frame" x="0.0" y="0.0" width="82" height="68.5"/>
@@ -104,8 +104,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0'00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shl-X6-YQf">
-                                        <rect key="frame" x="0.0" y="68.5" width="82" height="55"/>
-                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="40"/>
+                                        <rect key="frame" x="0.0" y="68.5" width="82" height="34.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -159,28 +159,28 @@
                                     <constraint firstAttribute="height" constant="440" id="OZP-Rf-Gfd"/>
                                 </constraints>
                             </mapView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cyZ-Zo-24H">
-                                <rect key="frame" x="0.0" y="509" width="414" height="303.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cyZ-Zo-24H">
+                                <rect key="frame" x="0.0" y="509" width="414" height="259"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bWP-mu-472">
-                                        <rect key="frame" x="149" y="0.0" width="116" height="143.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="bWP-mu-472">
+                                        <rect key="frame" x="149" y="0.0" width="116" height="135"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5D-Cv-7Rs">
-                                                <rect key="frame" x="0.0" y="0.0" width="116" height="89"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="116" height="77.5"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9FZ-yx-uPB">
-                                                <rect key="frame" x="31" y="109" width="54" height="34.5"/>
+                                                <rect key="frame" x="31" y="57.5" width="54" height="77.5"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="mRb-qv-n5u">
-                                        <rect key="frame" x="0.0" y="163.5" width="414" height="70"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="mRb-qv-n5u">
+                                        <rect key="frame" x="0.0" y="140" width="414" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ms-89-v0u">
                                                 <rect key="frame" x="0.0" y="0.0" width="44.5" height="27.5"/>
@@ -192,7 +192,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehS-iv-Sfw">
-                                                <rect key="frame" x="0.0" y="42.5" width="44.5" height="27.5"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="44.5" height="27.5"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -203,7 +203,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xg-fJ-kaq" customClass="RoundButton" customModule="Run4Health" customModuleProvider="target">
-                                        <rect key="frame" x="182" y="253.5" width="50" height="50"/>
+                                        <rect key="frame" x="182" y="209" width="50" height="50"/>
                                         <color key="backgroundColor" name="launchScreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="IFz-V9-Gyb"/>
@@ -214,7 +214,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="mRb-qv-n5u" firstAttribute="top" secondItem="cyZ-Zo-24H" secondAttribute="top" constant="163.5" id="RwM-Hb-W07"/>
+                                    <constraint firstItem="mRb-qv-n5u" firstAttribute="top" secondItem="cyZ-Zo-24H" secondAttribute="top" constant="140" id="RwM-Hb-W07"/>
                                     <constraint firstItem="mRb-qv-n5u" firstAttribute="width" secondItem="cyZ-Zo-24H" secondAttribute="width" id="gmS-ih-DDh"/>
                                 </constraints>
                             </stackView>
@@ -242,7 +242,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4U-M1-DXL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2213.04347826087" y="95.758928571428569"/>
+            <point key="canvasLocation" x="2240.5797101449275" y="444.64285714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Thc-4q-H9z">
@@ -250,6 +250,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cIU-OZ-JYl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="igj-2B-SRZ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" name="buttonColors"/>
@@ -309,7 +310,7 @@
         <image name="shareBtn" width="341" height="341"/>
         <image name="stop.fill" catalog="system" width="128" height="113"/>
         <namedColor name="buttonColors">
-            <color red="0.32507956030000001" green="0.28205111620000001" blue="0.26607620720000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.32499998807907104" green="0.28200000524520874" blue="0.26600000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="launchScreenColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

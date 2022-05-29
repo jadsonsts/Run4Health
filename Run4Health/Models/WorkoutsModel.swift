@@ -10,18 +10,19 @@ import UIKit
 
 struct WorkoutsModel {
     var workouts: [Runs]
-    
 }
 
 struct Runs {
     var duration: Int
     var distance: Double
-    var screenShot: UIImage
+    var screenShot: UIImage?
     var pace: String
     var date: Date
+    var locations: [Location]
 }
 
 struct Location {
-    var latitude = "23"
-    var longitude = "324"
+    var latitude: Double
+    var longitude: Double
+    var time: Date
 }
