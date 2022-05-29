@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 struct WorkoutsModel {
     var workouts: [Runs]
@@ -18,11 +19,19 @@ struct Runs {
     var screenShot: UIImage?
     var pace: String
     var date: Date
-    var locations: [Location]
+    var locations: [CLLocation]
 }
 
-struct Location {
-    var latitude: Double
-    var longitude: Double
+class Location {
+    var latitude: CLLocation
+    var longitude: CLLocation
     var time: Date
+    
+    init(latitude: CLLocation, longitude: CLLocation, time: Date) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.time = time
+    }
+    
+
 }

@@ -9,6 +9,7 @@ import Foundation
 
 struct FormatDisplay {
   static func distance(_ distance: Double) -> String {
+      //TODO: - CHECK TO HAVE IT DYNAMIC
     let distanceMeasurement = Measurement(value: distance, unit: UnitLength.meters)
     return FormatDisplay.distance(distanceMeasurement)
   }

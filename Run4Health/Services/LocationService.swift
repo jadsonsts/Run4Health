@@ -8,17 +8,17 @@
 import Foundation
 import CoreLocation
 
-protocol CustomUserLocationDelegate {
-    func userLocationUpdated(locacation: CLLocation)
-}
+//protocol CustomUserLocationDelegate {
+//    func userLocationUpdated(locacation: CLLocation)
+//}
 
 class LocationService: NSObject, CLLocationManagerDelegate {
     static let instance = LocationService()
     
-    //var customUserLocationDelegate: CustomUserLocationDelegate?
+//    var customUserLocationDelegate: CustomUserLocationDelegate?
     
     var locationManager = CLLocationManager()
-    var currentLocation: CLLocationCoordinate2D?
+//    var currentLocation: CLLocationCoordinate2D?
     
     override init() {
         super.init()

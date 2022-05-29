@@ -9,6 +9,10 @@ import UIKit
 import CoreLocation
 import MapKit
 
+protocol CustomUserLocationDelegate {
+    func userLocationUpdated(locacation: CLLocation)
+}
+
 class RunViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
@@ -19,8 +23,11 @@ class RunViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
     
+    var customUserLocationDelegate: CustomUserLocationDelegate?
+    
     private var workouts: WorkoutsModel?
     let manager = CLLocationManager()
+    private var currentLocation: CLLocationCoordinate2D?
     
     
     private var isKmSelected = true
@@ -121,7 +128,14 @@ class RunViewController: UIViewController {
     }
     
     func saveRun() {
-        //let newRun = WorkoutsModel(workouts: <#[Runs]#>)
+        let distance = distance.value
+        let duration = seconds
+        //let time = timeLabel.text
+        let pace = paceLabel.text
+        let time = Date()
+        
+        let run = [Runs(duration: duration, distance: distance, pace: pace!, date: time, locations: locationList)]
+        workouts = WorkoutsModel(workouts: run)
         
     }
     
@@ -154,7 +168,7 @@ class RunViewController: UIViewController {
     }
     
     @IBAction func resetMapLocation(sender: RoundButton){
-        guard let coordinate = LocationService.instance.currentLocation else {return}
+        guard let coordinate = currentLocation else {return}
         centerMapUserLocation(coordinate: coordinate)
     }
     
@@ -163,6 +177,11 @@ class RunViewController: UIViewController {
 //MARK: - User Location Delegate
 extension RunViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentLocation = manager.location?.coordinate
+        if customUserLocationDelegate != nil {
+            customUserLocationDelegate?.userLocationUpdated(locacation: locations.first!)
+        }
+        
         for newLocation in locations {
             let howRecent = newLocation.timestamp.timeIntervalSinceNow
             guard newLocation.horizontalAccuracy < 20 && abs(howRecent) < 10 else { continue }
@@ -186,6 +205,10 @@ extension RunViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         debugPrint("error: \(error.localizedDescription)")
+    }
+    
+    func userLocationUpdated(location: CLLocation) {
+        centerMapUserLocation(coordinate: location.coordinate)
     }
 }
 
