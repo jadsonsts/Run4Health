@@ -12,21 +12,27 @@ import CoreLocation
 //    func userLocationUpdated(locacation: CLLocation)
 //}
 
-class LocationService: NSObject, CLLocationManagerDelegate {
-    static let instance = LocationService()
+class LocationService {
+    static let shared = CLLocationManager()
     
-//    var customUserLocationDelegate: CustomUserLocationDelegate?
-    
-    var locationManager = CLLocationManager()
-//    var currentLocation: CLLocationCoordinate2D?
-    
-    override init() {
-        super.init()
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.distanceFilter = 50
-        self.locationManager.startUpdatingLocation()
-    }
-    
-
+    private init() { }
 }
+
+//class LocationService: NSObject, CLLocationManagerDelegate {
+//    static let instance = LocationService()
+//
+////    var customUserLocationDelegate: CustomUserLocationDelegate?
+//
+//    var locationManager = CLLocationManager()
+////    var currentLocation: CLLocationCoordinate2D?
+//
+//    override init() {
+//        super.init()
+//        self.locationManager.delegate = self
+//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        self.locationManager.distanceFilter = 50
+//        self.locationManager.startUpdatingLocation()
+//    }
+//
+//
+//}

@@ -23,10 +23,9 @@ class RunViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
     
-    var customUserLocationDelegate: CustomUserLocationDelegate?
     
-    private var workouts: WorkoutsModel?
-    let manager = CLLocationManager()
+    private var runs: Runs?
+    private let locationManager = LocationService.shared
     private var currentLocation: CLLocationCoordinate2D?
     
     
@@ -79,19 +78,18 @@ class RunViewController: UIViewController {
     }
     
     private func startLocationUpdates() {
-      manager.activityType = .fitness
-      manager.distanceFilter = 10
-      manager.startUpdatingLocation()
+      locationManager.delegate = self
+      locationManager.activityType = .fitness
+      locationManager.distanceFilter = 10
+      locationManager.startUpdatingLocation()
     }
     
     @IBAction func startPauseTapped(sender: RoundButton) {
-        
-        manager.startUpdatingLocation()
         if(timerCounting)
         {
             timerCounting = false
             timer.invalidate()
-            manager.stopUpdatingLocation()
+            locationManager.stopUpdatingLocation()
             startPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
         else
@@ -109,9 +107,6 @@ class RunViewController: UIViewController {
     
     func startRun() {
         startLocationUpdates()
-        mapView.removeOverlays(mapView.overlays)
-        
-        locationList.removeAll()
         updateDisplay()
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
             self.eachSecond()
@@ -120,34 +115,40 @@ class RunViewController: UIViewController {
     
     func stopRun() {
         seconds = 0
+        //TODO: - CHANGE IT DO BE DYNAMIC
+        distance = Measurement(value: 0, unit: UnitLength.meters)
+        timer.invalidate()
         hideLabels()
-        stopButton.isEnabled = false
+        locationList.removeAll() // it was on start run
+        mapView.removeOverlays(mapView.overlays) // it was on startRun
         distanceMetricButton.isEnabled = true
+        stopButton.isEnabled = false
         startPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        manager.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
     }
     
     func saveRun() {
         let distance = distance.value
         let duration = seconds
-        //let time = timeLabel.text
         let pace = paceLabel.text
         let time = Date()
         
-        let run = [Runs(duration: duration, distance: distance, pace: pace!, date: time, locations: locationList)]
-        workouts = WorkoutsModel(workouts: run)
+        let run = Runs(duration: duration, distance: distance, pace: pace!, date: time, locations: locationList)
+        runs = run
         
     }
     
     @IBAction func stopTapped(sender: RoundButton) {
-        let alert = UIAlertController(title: "Stop Workout?", message: "Are you sure you would like to stop your workout?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "CANCEL", style: .cancel))
-        alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
+        let alert = UIAlertController(title: "Finish Workout?", message: "Do you wish to end your workout?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
+            self.saveRun()
             self.stopRun()
             self.seconds = 0
             self.timer.invalidate()
             self.performSegue(withIdentifier: K.goToFinishRunDetails, sender: nil)
         }))
+        alert.addAction(UIAlertAction(title: "Discard", style: .destructive, handler: { _ in self.stopRun() }))
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -168,7 +169,9 @@ class RunViewController: UIViewController {
     }
     
     @IBAction func resetMapLocation(sender: RoundButton){
-        guard let coordinate = currentLocation else {return}
+        guard let coordinate = currentLocation else {
+            let stringR = " falhou aqui "
+            return debugPrint(stringR)}
         centerMapUserLocation(coordinate: coordinate)
     }
     
@@ -177,10 +180,8 @@ class RunViewController: UIViewController {
 //MARK: - User Location Delegate
 extension RunViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.currentLocation = manager.location?.coordinate
-        if customUserLocationDelegate != nil {
-            customUserLocationDelegate?.userLocationUpdated(locacation: locations.first!)
-        }
+        currentLocation = manager.location?.coordinate
+        userLocationUpdated(location: locations.first!)
         
         for newLocation in locations {
             let howRecent = newLocation.timestamp.timeIntervalSinceNow
@@ -215,11 +216,12 @@ extension RunViewController: CLLocationManagerDelegate {
 //MARK: - Request User Location
 extension RunViewController: MKMapViewDelegate {
     func checkLocationAuthStatus() {
-        if manager.authorizationStatus == .authorizedAlways {
+        if locationManager.authorizationStatus == .authorizedWhenInUse {
             self.mapView.showsUserLocation = true
-            manager.allowsBackgroundLocationUpdates = true
+            locationManager.allowsBackgroundLocationUpdates = true
+            locationManager.delegate = self
         } else {
-            manager.requestAlwaysAuthorization()
+            locationManager.requestAlwaysAuthorization()
         }
     }
     
@@ -246,7 +248,7 @@ extension RunViewController: MKMapViewDelegate {
 extension RunViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let runDetails = segue.destination as? DetailsRunViewController {
-            runDetails.workouts = workouts
+            runDetails.runs = runs
         }
     }
 }

@@ -91,3 +91,16 @@ class DetailsRunViewController: UIViewController {
     }
 
 }
+
+extension DetailsRunViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let polyline = overlay as? MKPolyline else {
+            return MKOverlayRenderer(overlay: overlay)
+        }
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        renderer.strokeColor = .systemPink
+        renderer.lineWidth = 4
+        renderer.alpha = 0.7
+        return renderer
+    }
+}
