@@ -16,12 +16,11 @@ class DetailsRunViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
     
-    var workouts: WorkoutsModel!
     var runs: Runs!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        mapView.delegate = self
         configureView()
     }
     

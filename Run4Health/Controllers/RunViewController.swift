@@ -9,10 +9,6 @@ import UIKit
 import CoreLocation
 import MapKit
 
-protocol CustomUserLocationDelegate {
-    func userLocationUpdated(locacation: CLLocation)
-}
-
 class RunViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
@@ -45,12 +41,12 @@ class RunViewController: UIViewController {
         super.viewDidLoad()
         checkLocationAuthStatus()
         configureView()
+        mapView.delegate = self
 
     }
     
     func configureView() {
         stopButton.isEnabled = false
-        //timeLabel.text = self.makeTimeString(hours: 0, minutes: 0, seconds: 0)
         hideLabels()
         mapView.layer.opacity = 0.8
         mapView.layer.cornerRadius = self.mapView.frame.height / 5
@@ -105,7 +101,7 @@ class RunViewController: UIViewController {
         }
     }
     
-    func startRun() {
+    private func startRun() {
         startLocationUpdates()
         updateDisplay()
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
@@ -113,7 +109,7 @@ class RunViewController: UIViewController {
         })
     }
     
-    func stopRun() {
+    private func stopRun() {
         seconds = 0
         //TODO: - CHANGE IT DO BE DYNAMIC
         distance = Measurement(value: 0, unit: UnitLength.meters)
@@ -127,7 +123,7 @@ class RunViewController: UIViewController {
         locationManager.stopUpdatingLocation()
     }
     
-    func saveRun() {
+    private func saveRun() {
         let distance = distance.value
         let duration = seconds
         let pace = paceLabel.text
@@ -199,9 +195,7 @@ extension RunViewController: CLLocationManagerDelegate {
                 mapView.setRegion(region, animated: true)
             }
             locationList.append(newLocation)
-            
         }
-
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -240,7 +234,6 @@ extension RunViewController: MKMapViewDelegate {
         renderer.alpha = 0.7
         return renderer
     }
-
 }
 
 
