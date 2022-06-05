@@ -9,55 +9,52 @@ import UIKit
 
 class RunsListTableViewController: UITableViewController {
     
-    var workouts: WorkoutsModel!
-    var runs = [Runs]()
-
+    
+    var runs: [Runs]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if runs.count == 0 {
-            return 1
-        } else {
-            return runs.count
-        }
-    }
 
+        return RunsList.instance.runs.count
+    }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.workoutCellId, for: indexPath)
-        let run = runs[indexPath.row]
+        let run = RunsList.instance.runs[indexPath.row]
         cell.textLabel?.text = FormatDisplay.date(run.date)
         cell.detailTextLabel?.text = "\(FormatDisplay.distance(run.distance)) | \(FormatDisplay.time(run.duration))"
         return cell
     }
     
-
-
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let run = RunsList.instance.runs[indexPath.row]
+        performSegue(withIdentifier: K.detailSegue, sender: run)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? DetailsRunViewController, let run = sender as? Runs {
+            destinationVC.runs = run
+        }
+    }
+    
+    
 }

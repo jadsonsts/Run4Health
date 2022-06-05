@@ -9,9 +9,6 @@ import Foundation
 import UIKit
 import CoreLocation
 
-struct WorkoutsModel {
-    var workouts: [Runs]
-}
 
 struct Runs {
     var duration: Int

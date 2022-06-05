@@ -111,6 +111,7 @@ class RunViewController: UIViewController {
     
     private func stopRun() {
         seconds = 0
+        locationManager.stopUpdatingLocation()
         //TODO: - CHANGE IT DO BE DYNAMIC
         distance = Measurement(value: 0, unit: UnitLength.meters)
         timer.invalidate()
@@ -120,7 +121,7 @@ class RunViewController: UIViewController {
         distanceMetricButton.isEnabled = true
         stopButton.isEnabled = false
         startPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        locationManager.stopUpdatingLocation()
+        removeOverlays()
     }
     
     private func saveRun() {
@@ -131,6 +132,7 @@ class RunViewController: UIViewController {
         
         let run = Runs(duration: duration, distance: distance, pace: pace!, date: time, locations: locationList)
         runs = run
+        RunsList.instance.addRun(run: run)
         
     }
     
@@ -140,7 +142,6 @@ class RunViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
             self.saveRun()
             self.stopRun()
-            self.seconds = 0
             self.timer.invalidate()
             self.performSegue(withIdentifier: K.goToFinishRunDetails, sender: nil)
         }))
@@ -199,7 +200,7 @@ extension RunViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        debugPrint("error: \(error.localizedDescription)")
+        debugPrint("Jadson error: \(error.localizedDescription)")
     }
     
     func userLocationUpdated(location: CLLocation) {
@@ -233,6 +234,10 @@ extension RunViewController: MKMapViewDelegate {
         renderer.lineWidth = 4
         renderer.alpha = 0.7
         return renderer
+    }
+    
+    func removeOverlays() {
+        self.mapView.overlays.forEach { self.mapView.removeOverlay($0)}
     }
 }
 
