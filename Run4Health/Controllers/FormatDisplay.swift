@@ -31,7 +31,7 @@ struct FormatDisplay {
     let formatter = MeasurementFormatter()
     formatter.unitOptions = [.providedUnit] // 1
     let speedMagnitude = seconds != 0 ? distance.value / Double(seconds) : 0
-    let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.metersPerSecond)
+    let speed = Measurement(value: speedMagnitude, unit: outputUnit)
     return formatter.string(from: speed.converted(to: outputUnit))
   }
   

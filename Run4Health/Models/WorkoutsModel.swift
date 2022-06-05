@@ -13,7 +13,7 @@ import CoreLocation
 struct Runs {
     var duration: Int
     var distance: Double
-    var screenShot: UIImage?
+//    var screenShot: UIImage?
     var pace: String
     var date: Date
     var locations: [CLLocation]

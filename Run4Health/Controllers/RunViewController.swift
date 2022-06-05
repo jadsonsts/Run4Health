@@ -31,8 +31,13 @@ class RunViewController: UIViewController {
     private var timer = Timer()
     private var seconds = 0
     private var timerCounting: Bool = false
-    //var unitChosen: Measurement<UnitLength>?
-    private var distance = Measurement(value: 0, unit: UnitLength.meters) //meter as default
+    
+    
+    private var unitMeter = Measurement(value: 0, unit: UnitLength.meters)
+    private var unitMile = Measurement(value: 0, unit: UnitLength.miles)
+    
+    
+    private var distance: Measurement<UnitLength>!
     private var locationList: [CLLocation] = []
     private var paceChosen = UnitSpeed.minutesPerKilometer //km as default
     
@@ -42,7 +47,7 @@ class RunViewController: UIViewController {
         checkLocationAuthStatus()
         configureView()
         mapView.delegate = self
-
+        distance = unitMeter //meter as default
     }
     
     func configureView() {
@@ -153,12 +158,12 @@ class RunViewController: UIViewController {
     @IBAction func metricTapped(sender: RoundButton) {
         if isKmSelected {
             isKmSelected = false
-            distance = Measurement(value: 0, unit: UnitLength.meters)
+            distance = unitMeter
             paceChosen = UnitSpeed.minutesPerKilometer
             self.distanceMetricButton.setImage(UIImage(named: "kmBtn"), for: .normal)
         } else {
             isKmSelected = true
-            distance = Measurement(value: 0, unit: UnitLength.miles)
+            distance = unitMile
             paceChosen = UnitSpeed.minutesPerMile
             self.distanceMetricButton.setImage(UIImage(named: "milesBtn"), for: .normal)
 
@@ -212,9 +217,9 @@ extension RunViewController: CLLocationManagerDelegate {
 extension RunViewController: MKMapViewDelegate {
     func checkLocationAuthStatus() {
         if locationManager.authorizationStatus == .authorizedWhenInUse {
+            locationManager.delegate = self
             self.mapView.showsUserLocation = true
             locationManager.allowsBackgroundLocationUpdates = true
-            locationManager.delegate = self
         } else {
             locationManager.requestAlwaysAuthorization()
         }
@@ -232,7 +237,6 @@ extension RunViewController: MKMapViewDelegate {
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = .systemPink
         renderer.lineWidth = 4
-        renderer.alpha = 0.7
         return renderer
     }
     

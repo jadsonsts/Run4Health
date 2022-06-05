@@ -24,7 +24,7 @@ class DetailsRunViewController: UIViewController {
         configureView()
     }
     
-
+    
     private func configureView() {
         let distance = Measurement(value: runs.distance, unit: UnitLength.meters)
         let seconds = runs.duration
@@ -49,11 +49,9 @@ class DetailsRunViewController: UIViewController {
             _ = locations.count > 0
         
         let latitudes = locations.map { location -> Double in
-//            let location = location
             return location.coordinate.latitude
         }
         let longitudes = locations.map { location -> Double in
-//            let location = location
             return location.coordinate.longitude
         }
         
@@ -72,7 +70,7 @@ class DetailsRunViewController: UIViewController {
     }
     
     private func polyLine() -> MKPolyline {
-         let locations = runs.locations
+        let locations = runs.locations
         
         let coords: [CLLocationCoordinate2D] = locations.map { location in
             return CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -88,7 +86,18 @@ class DetailsRunViewController: UIViewController {
         mapView.setRegion(region, animated: true)
         mapView.addOverlay(polyLine())
     }
-
+    
+    //MARK: - Share Run
+    @IBAction func sharedButtonTapped(_ sender: UIBarButtonItem){
+        let bounds = UIScreen.main.bounds //screenshot without carrier and status bar
+        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
+        self.view.drawHierarchy(in: bounds, afterScreenUpdates: false)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        let activityViewController = UIActivityViewController(activityItems: [img!], applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
 }
 
 extension DetailsRunViewController: MKMapViewDelegate {

@@ -15,8 +15,8 @@ class RoundButton: UIButton {
 
         //MARK: Shadow
         self.layer.shadowRadius = 15
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowColor = UIColor.systemBrown.cgColor
     }
 
 }
