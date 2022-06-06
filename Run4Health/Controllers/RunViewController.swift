@@ -53,7 +53,7 @@ class RunViewController: UIViewController {
     func configureView() {
         stopButton.isEnabled = false
         hideLabels()
-        mapView.layer.opacity = 0.8
+        mapView.layer.opacity = 0.7
         mapView.layer.cornerRadius = self.mapView.frame.height / 5
     }
     
@@ -79,10 +79,10 @@ class RunViewController: UIViewController {
     }
     
     private func startLocationUpdates() {
-      locationManager.delegate = self
-      locationManager.activityType = .fitness
-      locationManager.distanceFilter = 10
-      locationManager.startUpdatingLocation()
+        LocationService.shared.delegate = self
+        LocationService.shared.activityType = .fitness
+        LocationService.shared.distanceFilter = 10
+        LocationService.shared.startUpdatingLocation()
     }
     
     @IBAction func startPauseTapped(sender: RoundButton) {
@@ -90,7 +90,7 @@ class RunViewController: UIViewController {
         {
             timerCounting = false
             timer.invalidate()
-            locationManager.stopUpdatingLocation()
+            LocationService.shared.stopUpdatingLocation()
             startPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
         else
@@ -116,7 +116,7 @@ class RunViewController: UIViewController {
     
     private func stopRun() {
         seconds = 0
-        locationManager.stopUpdatingLocation()
+        LocationService.shared.stopUpdatingLocation()
         //TODO: - CHANGE IT DO BE DYNAMIC
         distance = Measurement(value: 0, unit: UnitLength.meters)
         timer.invalidate()
@@ -205,7 +205,7 @@ extension RunViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        debugPrint("Jadson error: \(error.localizedDescription)")
+        debugPrint("error: \(error.localizedDescription)")
     }
     
     func userLocationUpdated(location: CLLocation) {
@@ -216,12 +216,11 @@ extension RunViewController: CLLocationManagerDelegate {
 //MARK: - Request User Location
 extension RunViewController: MKMapViewDelegate {
     func checkLocationAuthStatus() {
-        if locationManager.authorizationStatus == .authorizedWhenInUse {
-            locationManager.delegate = self
+        if locationManager.authorizationStatus == .authorizedAlways {
             self.mapView.showsUserLocation = true
-            locationManager.allowsBackgroundLocationUpdates = true
+            LocationService.shared.allowsBackgroundLocationUpdates = true
         } else {
-            locationManager.requestAlwaysAuthorization()
+            LocationService.shared.requestAlwaysAuthorization()
         }
     }
     

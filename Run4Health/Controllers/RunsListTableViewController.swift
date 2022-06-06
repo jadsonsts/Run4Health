@@ -31,8 +31,8 @@ class RunsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.workoutCellId, for: indexPath)
         let run = RunsList.instance.runs[indexPath.row]
-        cell.textLabel?.text = FormatDisplay.date(run.date)
-        cell.detailTextLabel?.text = "\(FormatDisplay.distance(run.distance)) | \(FormatDisplay.time(run.duration))"
+        cell.textLabel?.text = "Run on: \(FormatDisplay.date(run.date))"
+        cell.detailTextLabel?.text = "Distance: \(FormatDisplay.distance(run.distance)) | Duration: \(FormatDisplay.time(run.duration))"
         return cell
     }
     
