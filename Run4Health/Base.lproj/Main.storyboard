@@ -95,16 +95,16 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JnQ-Qq-KQ9">
-                                <rect key="frame" x="0.0" y="546.5" width="82" height="103"/>
+                                <rect key="frame" x="0.0" y="546.5" width="42" height="103"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rk-sN-RR0">
-                                        <rect key="frame" x="0.0" y="0.0" width="82" height="68.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rk-sN-RR0">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="68.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="50"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0'00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shl-X6-YQf">
-                                        <rect key="frame" x="0.0" y="68.5" width="82" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="68.5" width="42" height="34.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -154,13 +154,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LoR-GX-1e1">
-                                <rect key="frame" x="20" y="152" width="374" height="400"/>
+                                <rect key="frame" x="20" y="144" width="374" height="400"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="OZP-Rf-Gfd"/>
                                 </constraints>
                             </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="cyZ-Zo-24H">
-                                <rect key="frame" x="0.0" y="582" width="414" height="150"/>
+                                <rect key="frame" x="0.0" y="574" width="414" height="150"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="bWP-mu-472">
                                         <rect key="frame" x="149" y="0.0" width="116" height="60"/>
@@ -317,7 +317,7 @@
                     <tabBarItem key="tabBarItem" title="Workout" image="figure.walk" catalog="system" id="zqa-Bu-Zhg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="FXA-WA-86a">
-                        <rect key="frame" x="0.0" y="44" width="414" height="108"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="100"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="buttonColors"/>
                         <textAttributes key="largeTitleTextAttributes">
@@ -341,7 +341,7 @@
                     <tabBarItem key="tabBarItem" title="Recents" image="list.triangle" catalog="system" id="lXs-bO-ZVY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="PwB-YC-NYT">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="103"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="buttonColors"/>
                         <textAttributes key="largeTitleTextAttributes">

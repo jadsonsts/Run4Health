@@ -35,9 +35,8 @@ class RunViewController: UIViewController {
     
     private var unitMeter = Measurement(value: 0, unit: UnitLength.meters)
     private var unitMile = Measurement(value: 0, unit: UnitLength.miles)
-    
-    
     private var distance: Measurement<UnitLength>!
+    
     private var locationList: [CLLocation] = []
     private var paceChosen = UnitSpeed.minutesPerKilometer //km as default
     
@@ -172,7 +171,7 @@ class RunViewController: UIViewController {
     
     @IBAction func resetMapLocation(sender: RoundButton){
         guard let coordinate = currentLocation else {
-            let stringR = " falhou aqui "
+            let stringR = " fail to get user location "
             return debugPrint(stringR)}
         centerMapUserLocation(coordinate: coordinate)
     }
