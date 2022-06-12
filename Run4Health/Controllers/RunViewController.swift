@@ -25,12 +25,12 @@ class RunViewController: UIViewController {
     private var currentLocation: CLLocationCoordinate2D?
     
     
-    private var isKmSelected = true
+    private var isKmSelected: Bool!
     
     //variables for the timer
     private var timer = Timer()
     private var seconds = 0
-    private var timerCounting: Bool = false
+    private var timerCounting = false
     
     
     private var unitMeter = Measurement(value: 0, unit: UnitLength.meters)
@@ -47,6 +47,8 @@ class RunViewController: UIViewController {
         configureView()
         mapView.delegate = self
         distance = unitMeter //meter as default
+        isKmSelected = true
+        
     }
     
     func configureView() {
@@ -116,12 +118,15 @@ class RunViewController: UIViewController {
     private func stopRun() {
         seconds = 0
         LocationService.shared.stopUpdatingLocation()
-        //TODO: - CHANGE IT DO BE DYNAMIC
-        distance = Measurement(value: 0, unit: UnitLength.meters)
+        //TODO: - CHANGE IT DO BE DYNAMIC - Done
+        if isKmSelected {
+            distance = unitMeter
+        } else {
+            distance = unitMile
+        }
         timer.invalidate()
         hideLabels()
         locationList.removeAll() // it was on start run
-        mapView.removeOverlays(mapView.overlays) // it was on startRun
         distanceMetricButton.isEnabled = true
         stopButton.isEnabled = false
         startPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
@@ -156,16 +161,15 @@ class RunViewController: UIViewController {
     
     @IBAction func metricTapped(sender: RoundButton) {
         if isKmSelected {
-            isKmSelected = false
             distance = unitMeter
             paceChosen = UnitSpeed.minutesPerKilometer
             self.distanceMetricButton.setImage(UIImage(named: "kmBtn"), for: .normal)
+            isKmSelected = false
         } else {
-            isKmSelected = true
             distance = unitMile
             paceChosen = UnitSpeed.minutesPerMile
             self.distanceMetricButton.setImage(UIImage(named: "milesBtn"), for: .normal)
-
+            isKmSelected = true
         }
     }
     
@@ -192,7 +196,12 @@ extension RunViewController: CLLocationManagerDelegate {
                 let delta = newLocation.distance(from: lastLocation)
                 
                 //TODO: - CHANGE IT TO BE DYNAMIC (METER AND MILE)
-                distance = distance + Measurement(value: delta, unit: UnitLength.meters)
+                if isKmSelected {
+                    distance = distance + Measurement(value: delta, unit: UnitLength.meters)
+                } else {
+                    distance = distance + Measurement(value: delta, unit: UnitLength.miles)
+                }
+                
                 
                 let coordinates = [lastLocation.coordinate, newLocation.coordinate]
                 mapView.addOverlay(MKPolyline(coordinates: coordinates, count: 2))
@@ -249,6 +258,7 @@ extension RunViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let runDetails = segue.destination as? DetailsRunViewController {
             runDetails.runs = runs
+            runDetails.paceChosen = paceChosen
         }
     }
 }

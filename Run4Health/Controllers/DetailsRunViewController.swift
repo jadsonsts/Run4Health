@@ -17,6 +17,8 @@ class DetailsRunViewController: UIViewController {
     @IBOutlet weak var paceLabel: UILabel!
     
     var runs: Runs!
+    var paceChosen = UnitSpeed.minutesPerKilometer
+    var distanceTipe: Measurement<UnitLength>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +35,7 @@ class DetailsRunViewController: UIViewController {
         let formattedTime = FormatDisplay.time(seconds)
         let formattedPace = FormatDisplay.pace(distance: distance,
                                                seconds: seconds,
-                                               outputUnit: UnitSpeed.minutesPerKilometer)
+                                               outputUnit: paceChosen)
         
         distanceLabel.text = "Distance: \(formattedDistance)"
         dateLabel.text = formattedDate
