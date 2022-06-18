@@ -18,7 +18,7 @@ class DetailsRunViewController: UIViewController {
     
     var runs: Runs!
     var paceChosen = UnitSpeed.minutesPerKilometer
-    var distanceTipe: Measurement<UnitLength>!
+    var showKm: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +30,20 @@ class DetailsRunViewController: UIViewController {
     private func configureView() {
         let distance = Measurement(value: runs.distance, unit: UnitLength.meters)
         let seconds = runs.duration
-        let formattedDistance = FormatDisplay.distance(distance)
+        
+        if showKm! {
+            let showDistanceKm = FormatDisplay.distance(distance)
+            distanceLabel.text = "Distance: \(showDistanceKm)"
+        } else {
+            let showDistanceMile = FormatDisplay.distanceMile(distance.value)
+            distanceLabel.text = "Distance: \(showDistanceMile)"
+        }
+            
         let formattedDate = FormatDisplay.date(runs.date)
         let formattedTime = FormatDisplay.time(seconds)
         let formattedPace = FormatDisplay.pace(distance: distance,
                                                seconds: seconds,
                                                outputUnit: paceChosen)
-        
-        distanceLabel.text = "Distance: \(formattedDistance)"
         dateLabel.text = formattedDate
         timeLabel.text = "Time: \(formattedTime)"
         paceLabel.text = "Pace: \(formattedPace)"

@@ -13,7 +13,7 @@ class RunsList {
     var runs = [Runs]()
     
     func addRun(run: Runs) {
-        let currentRun = Runs(duration: run.duration, distance: run.distance, pace: run.pace, date: run.date, locations: run.locations)
+        let currentRun = Runs(duration: run.duration, distance: run.distance, pace: run.pace, date: run.date, showInKm: run.showInKm, locations: run.locations)
         runs.append(currentRun)
     }
 }

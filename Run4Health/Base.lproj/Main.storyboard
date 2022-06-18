@@ -154,13 +154,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LoR-GX-1e1">
-                                <rect key="frame" x="20" y="144" width="374" height="400"/>
+                                <rect key="frame" x="20" y="147" width="374" height="400"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="OZP-Rf-Gfd"/>
                                 </constraints>
                             </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="cyZ-Zo-24H">
-                                <rect key="frame" x="0.0" y="574" width="414" height="150"/>
+                                <rect key="frame" x="0.0" y="577" width="414" height="150"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="bWP-mu-472">
                                         <rect key="frame" x="149" y="0.0" width="116" height="60"/>
@@ -360,7 +360,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gKa-sb-kgc"/>
+        <segue reference="Ebk-iV-D0W"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="figure.walk" catalog="system" width="95" height="128"/>

@@ -32,7 +32,13 @@ class RunsListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.workoutCellId, for: indexPath)
         let run = RunsList.instance.runs[indexPath.row]
         cell.textLabel?.text = "Run on: \(FormatDisplay.date(run.date))"
-        cell.detailTextLabel?.text = "Distance: \(FormatDisplay.distance2(run.distance)) | Duration: \(FormatDisplay.time(run.duration))"
+        
+        if run.showInKm {
+            cell.detailTextLabel?.text = "Distance: \(FormatDisplay.distanceKm(run.distance)) | Duration: \(FormatDisplay.time(run.duration))"
+        } else {
+            cell.detailTextLabel?.text = "Distance: \(FormatDisplay.distanceMile(run.distance)) | Duration: \(FormatDisplay.time(run.duration))"
+        }
+
         return cell
     }
     
@@ -52,8 +58,7 @@ class RunsListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? DetailsRunViewController, let run = sender as? Runs {
             destinationVC.runs = run
+            destinationVC.showKm = run.showInKm
         }
     }
-    
-    
 }

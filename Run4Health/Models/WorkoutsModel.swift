@@ -15,6 +15,7 @@ struct Runs {
     var distance: Double
     var pace: String
     var date: Date
+    var showInKm: Bool
     var locations: [CLLocation]
 }
 
