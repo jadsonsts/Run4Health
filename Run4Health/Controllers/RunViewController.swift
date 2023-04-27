@@ -71,7 +71,7 @@ class RunViewController: UIViewController {
     }
     
     private func updateDisplay() {
-                let formattedTime = FormatDisplay.time(seconds)
+        let formattedTime = FormatDisplay.time(seconds)
         let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: paceChosen)
         
         if isKmSelected {
